@@ -1,8 +1,30 @@
+*{
+  box-sizing: border-box;
+}
+
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+
 }
 
 a {
   color: #00B7FF;
+}
+header, header nav{
+  height: 100px;
+}
+
+header img.logo{
+    width: 50px;
+}
+
+
+/* detalle de producto */
+
+.body-detalle{
+
+}
+
+.body-detalle img.imagen-producto{
+  width: 40%;
+
 }

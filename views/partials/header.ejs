@@ -1,0 +1,51 @@
+<header class="uk-background-secondary">
+    <nav class=" uk-background-secondary uk-padding-small uk-flex uk-flex-middle" uk-navbar>
+
+        <a href="/">
+            <img class="logo" src="https://icon-library.com/images/white-shopping-cart-icon-png/white-shopping-cart-icon-png-17.jpg" alt="Shopping cart image">
+        </a>
+
+        <div class="uk-navbar-right">
+        
+            <ul class="uk-navbar-nav uk-flex-middle">
+                <li><a href="/">Home</a></li>
+                <li>
+                    <a href="#">Categoria</a>
+                    <div class="uk-navbar-dropdown">
+                        <ul class="uk-nav uk-navbar-dropdown-nav">
+                            <li><a href="/productos/categoria/celulares">Celulares</a></li>
+                            <li><a href="/productos/categoria/computadoras">Computadoras</a></li>
+                            <li><a href="/productos/categoria/tablets">Tablets</a></li>
+                            <li><a href="/productos/categoria/smartwatch">Smartwatchs</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <% if (usuarioLogueado != undefined) { %>
+                    <li>
+                        <a href="#"><%= usuarioLogueado.nombre %></a>
+                        <div class="uk-navbar-dropdown">
+                            <ul class="uk-nav uk-navbar-dropdown-nav">
+                                <li><a href="/usuario/preguntas">Mis preguntas</a></li>
+                                <li><a href="/productos/agregarProducto">Agregar producto</a></li>
+                                <li><a href="/usuario/logout">Logout</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                <% }else{ %>
+                    <li><a href="/usuario/login">Login</a></li>
+                <% } %>
+                <li>
+                    <form action="/productos/buscar" method="GET">
+                        <div class="">
+                            <div class="uk-inline">
+                                <a class="uk-form-icon" href="#" uk-icon="icon: search"></a>
+                                <input class="uk-input" type="text" placeholder="Buscar..." name="busqueda">
+                            </div>
+                        </div>
+                    </form>
+                </li>
+            </ul>
+        
+        </div>
+    </nav>
+</header>

@@ -1,0 +1,59 @@
+<%- include('./partials/head') %>
+  
+  </head>
+  <body>
+  
+<%- include('./partials/header') %> 
+
+<div class="uk-container">
+  <div class="uk-section">
+    
+    <h1 class="uk-text-center">¡Tenemos todos los productos electrónicos de alta gama!</h1>
+    
+    <div class="uk-width-1-1 uk-padding-small uk-flex uk-flex-right">
+      <form action="/" method="get" class="uk-flex uk-flex-inline uk-flex-middle">
+          <label for="orden" class="uk-margin-small-right">Orden: </label>
+          <select name="orden" id="orden" class="uk-select" onchange="this.form.submit()">
+            <option value="default" id="default">Default</option>
+            <option value="mayor-precio" id="mayor">Precio de mayor a menor</option>
+            <option value="menor-precio" id="menor">Precio de menor a mayor</option>
+            <option value="aleatorio" id="random">Aleatorio</option>
+          </select>
+      </form>
+    </div>
+
+    <hr>
+
+        
+    
+    <ul class="uk-flex uk-flex-wrap uk-flex-between uk-child-width-1-3 uk-padding-remove" style="list-style: none;">
+
+      <% for( let i = 0; i < productos.length; i++ ) { %>
+        <li class="uk-card uk-card-default uk-card-hover uk-card-body uk-margin">
+          <a href="/productos/detalle/<%= productos[i].id %>"  class="uk-link-text">
+            <img src="<%= productos[i].img_url %>" alt="" width="100%">
+            <h5 class="uk-text-center"><%= productos[i].nombre %></h5>
+            <p class="uk-text-center">U$D <%= productos[i].precio %></p>
+            <p class="uk-text-center"><%= productos[i].marca %></p>
+          </a>
+        </li>  
+        <% } %>
+        
+      </ul>
+      
+      </div>
+    </div>
+    
+      <script>
+        let query = new URLSearchParams(window.location.search)
+        if (query.get('orden') == "mayor-precio") {
+          document.querySelector('#mayor').selected = "selected"
+        }else if(query.get('orden') == "menor-precio"){
+          document.querySelector('#menor').selected = "selected"
+        } else if(query.get('orden') == "aleatorio"){
+          document.querySelector('#aleatorio').selected = "selected"
+          
+        }
+        </script>
+  </body>
+  </html>
