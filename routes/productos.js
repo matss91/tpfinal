@@ -9,4 +9,6 @@ router.get('/categoria/:laCategoria', productosController.porCategoria);
 
 router.get('/buscar', productosController.buscar);
 
+router.post('/agregarComentario/:id', productosController.agregarComentario);
+
 module.exports = router;

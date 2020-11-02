@@ -13,10 +13,10 @@
                     <a href="#">Categoria</a>
                     <div class="uk-navbar-dropdown">
                         <ul class="uk-nav uk-navbar-dropdown-nav">
-                            <li><a href="/productos/categoria/celulares">Celulares</a></li>
-                            <li><a href="/productos/categoria/computadoras">Computadoras</a></li>
-                            <li><a href="/productos/categoria/tablets">Tablets</a></li>
-                            <li><a href="/productos/categoria/smartwatch">Smartwatchs</a></li>
+                            <li><a href="/productos/categoria/1">Celulares</a></li>
+                            <li><a href="/productos/categoria/2">Computadoras</a></li>
+                            <li><a href="/productos/categoria/3">Tablets</a></li>
+                            <li><a href="/productos/categoria/4">Smartwatchs</a></li>
                         </ul>
                     </div>
                 </li>
@@ -25,14 +25,14 @@
                         <a href="#"><%= usuarioLogueado.nombre %></a>
                         <div class="uk-navbar-dropdown">
                             <ul class="uk-nav uk-navbar-dropdown-nav">
-                                <li><a href="/usuario/preguntas">Mis preguntas</a></li>
+                                <li><a href="/usuario/comentarios">Mis comentarios</a></li>
                                 <li><a href="/productos/agregarProducto">Agregar producto</a></li>
                                 <li><a href="/usuario/logout">Logout</a></li>
                             </ul>
                         </div>
                     </li>
                 <% }else{ %>
-                    <li><a href="/usuario/login">Login</a></li>
+                    <li><a href="/usuario/login" target="_blank">Login</a></li>
                 <% } %>
                 <li>
                     <form action="/productos/buscar" method="GET">

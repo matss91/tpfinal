@@ -2,7 +2,8 @@ const db = require('../database/models');
 const Sequelize = require('sequelize');
 const { restart } = require('nodemon');
 const op = db.Sequelize.Op;
-const bcrypt = require('bcryptjs');;
+const bcrypt = require('bcryptjs');const { log } = require('debug');
+;
 
 module.exports = {
     loginForm: function (req,res) {
@@ -79,11 +80,24 @@ module.exports = {
     },
 
     logout: function (req,res) {
-
+        req.session.usuarioLogueado = undefined;
+        res.redirect('/');
     },
 
-    preguntas: function (req, res) {
-        
+    comentarios: function (req, res) {
+        let usuario_id = req.session.usuarioLogueado.id;
+        db.Comentario.findAll({
+            where: [
+                {usuario_id: usuario_id}
+            ],
+            include: [
+                {association: 'producto'}
+            ]
+        })
+        .then(function (comentarios) {
+            // res.send(comentarios)
+            res.render('misComentarios', { comentarios: comentarios, title: 'Mis comentarios' })
+        })
     }
 }
 

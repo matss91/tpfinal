@@ -1,0 +1,47 @@
+<%- include('./partials/head') %>
+
+</head>
+
+<body class="body-detalle">
+    <%- include('./partials/header') %>
+
+    <div class="uk-container">
+        <div class="uk-section">
+            <h1 class="uk-text-center">Comentarios hechos por <%= usuarioLogueado.nombre %>  </h1>
+
+            
+
+ 
+
+
+            <div class="comentarios uk-flex uk-flex-center uk-margin-large-top">
+                <ul class="uk-list">
+                    <% for( let i = 0; i < comentarios.length; i++ ) { %>
+                    <li>
+                        <div class="uk-card uk-card-default uk-card uk-card uk-padding-small uk-width-large">
+                            <h3 class="uk-card-title"><span class="uk-margin-small-right"
+                                    uk-icon="user"></span>Producto: <a class="uk-text-secondary" href="/productos/detalle/<%= comentarios[i].producto.id %>" > <%= comentarios[i].producto.nombre %></a> </h3>
+                            <p><span class="uk-margin-small-right" uk-icon="star"></span>Puntaje:
+                                <%=comentarios[i].calificacion %> </p>
+                            <p><span class="uk-margin-small-right"
+                                    uk-icon="pencil"></span><%= comentarios[i].texto_comentario %> </p>
+                        </div>
+                    </li>
+                    <% } %>
+                </ul>
+            </div>
+
+
+
+
+
+
+        </div>
+    </div>
+
+  
+
+
+</body>
+
+</html>

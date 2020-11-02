@@ -45,14 +45,16 @@
     </div>
     
       <script>
-        let query = new URLSearchParams(window.location.search)
-        if (query.get('orden') == "mayor-precio") {
-          document.querySelector('#mayor').selected = "selected"
-        }else if(query.get('orden') == "menor-precio"){
-          document.querySelector('#menor').selected = "selected"
-        } else if(query.get('orden') == "aleatorio"){
-          document.querySelector('#aleatorio').selected = "selected"
-          
+        window.onload = function (){
+          let query = new URLSearchParams(window.location.search)
+          if (query.get('orden') == "mayor-precio") {
+            document.querySelector('#mayor').selected = "selected"
+          }else if(query.get('orden') == "menor-precio"){
+            document.querySelector('#menor').selected = "selected"
+          } else if(query.get('orden') == "aleatorio"){
+            document.querySelector('#aleatorio').selected = "selected"
+            
+          }
         }
         </script>
   </body>

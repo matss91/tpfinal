@@ -18,8 +18,8 @@ module.exports = (sequelize, DataTypes) => {
         img_url: {
             type: DataTypes.STRING
         },
-        categoria: {
-            type: DataTypes.INTEGER
+        categoria_id: {
+            type: DataTypes.INTEGER,
         }
     };
 
@@ -28,6 +28,20 @@ module.exports = (sequelize, DataTypes) => {
     };
 
     const Producto = sequelize.define("Producto", cols, config);
+
+ 
+    Producto.associate = function (models) {
+        Producto.belongsTo(models.Categoria, {
+            as: 'categorias',
+            foreignKey: 'categoria_id'
+        })
+        
+        Producto.hasMany(models.Comentario, {
+            foreignKey: 'producto_id',
+            as: 'comentarios'
+        })  
+    }
+
 
 
     return Producto;

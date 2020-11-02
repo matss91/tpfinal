@@ -8,7 +8,6 @@ module.exports = {
             order: Sequelize.literal('rand()')
         })
         .then(function (productos){
-            console.log(req.session.usuarioLogueado);
             res.render('home', {productos:productos, title: "Home"})
         })
     }

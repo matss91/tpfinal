@@ -11,13 +11,13 @@
 
             <ul class="uk-flex uk-flex-wrap uk-flex-between uk-child-width-1-3" style="list-style: none;">
             
-                <% for( let i = 0; i < productos.length; i++ ) { %>
+                <% for( let i = 0; i < resultado.length; i++ ) { %>
                 <li class="uk-card uk-card-default uk-card-hover uk-card-body uk-margin">
-                    <a href="/productos/detalle/<%= productos[i].id %>" class="uk-link-text">
-                        <img src="<%= productos[i].img_url %>" alt="" width="100%">
-                        <h5 class="uk-text-center"><%= productos[i].nombre %></h5>
-                        <p class="uk-text-center">U$D <%= productos[i].precio %></p>
-                        <p class="uk-text-center"><%= productos[i].marca %></p>
+                    <a href="/productos/detalle/<%= resultado[i].id %>" class="uk-link-text">
+                        <img src="<%= resultado[i].img_url %>" alt="" width="100%">
+                        <h5 class="uk-text-center"><%= resultado[i].nombre %></h5>
+                        <p class="uk-text-center">U$D <%= resultado[i].precio %></p>
+                        <p class="uk-text-center"><%= resultado[i].marca %></p>
                     </a>
                 </li>
                 <% } %>
