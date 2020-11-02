@@ -38,7 +38,7 @@ app.use(function (req, res, next) {
 app.use(function (req, res, next) {
 
   if (req.cookies.idDelUsuarioLogueado != undefined && req.session.usuarioLogueado == undefined) {
-    db.User.findByPk(req.cookies.idDelUsuarioLogueado)
+    db.Usuario.findByPk(req.cookies.idDelUsuarioLogueado)
       .then(function (user) {
         req.session.usuarioLogueado = user;
         res.redirect(req.originalUrl);
