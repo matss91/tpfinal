@@ -41,6 +41,28 @@
     </div>
 </div>
 
+<% if (error == 'usuario') { %>
+    <script type="text/javascript">
+        UIkit.notification({
+            message: "<span uk-icon=\'icon: close\'></span> El nombre de usuario o email no está registrado",
+            status: 'danger',
+            pos: 'top-center',
+            timeout: 5000
+        });
+</script>
+
+<% } else if(error == 'password'){ %>
+    <script type="text/javascript">
+        UIkit.notification({
+            message: "<span uk-icon=\'icon: close\'></span> Contraseña incorrecta",
+            status: 'danger',
+            pos: 'top-center',
+            timeout: 5000
+        });
+    </script>
+<% } %>
+
+
 </body>
 
 </html>

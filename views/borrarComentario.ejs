@@ -1,0 +1,30 @@
+<%- include('./partials/head') %>
+
+</head>
+
+<body class="body-detalle">
+    <%- include('./partials/header') %>
+
+    <div class="uk-container">
+        <div class="uk-section uk-flex uk-flex-column uk-flex-center uk-flex-middle">
+
+            <h1 class="uk-text-center"><%= title %> </h1>
+            
+            <div class="uk-card uk-card-default uk-card-body uk-width-2-3">
+                <h2 class="uk-card-title uk-text-center ">¿Seguro que quieres borrar el comentario?</h2>
+                <form action="/usuario/borrar/<%= comentario.id %>" method="POST" class="uk-flex uk-flex-row uk-flex-around uk-child-width-1-3">
+                        <button type="submit" class="uk-button uk-button-primary uk-margin-small-bottom">Si</button>
+                        <a href="/usuario/comentarios"  class="uk-button uk-button-danger uk-margin-small-bottom">No</a>
+                </form>
+            </div>
+
+
+        </div>
+    </div>
+
+
+
+
+</body>
+
+</html>

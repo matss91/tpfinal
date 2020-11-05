@@ -20,6 +20,9 @@ module.exports = (sequelize, DataTypes) => {
         },
         categoria_id: {
             type: DataTypes.INTEGER,
+        },
+        usuario_id: {
+            type: DataTypes.INTEGER
         }
     };
 
@@ -34,6 +37,11 @@ module.exports = (sequelize, DataTypes) => {
         Producto.belongsTo(models.Categoria, {
             as: 'categorias',
             foreignKey: 'categoria_id'
+        })
+
+        Producto.belongsTo(models.Usuario, {
+            as: 'usuario',
+            foreignKey: 'usuario_id'
         })
         
         Producto.hasMany(models.Comentario, {

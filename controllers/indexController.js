@@ -1,5 +1,6 @@
 const db = require('../database/models');
 const Sequelize = require('sequelize');
+const { log } = require('debug');
 const op = db.Sequelize.Op;
 
 module.exports = {

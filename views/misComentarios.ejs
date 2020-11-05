@@ -7,11 +7,26 @@
 
     <div class="uk-container">
         <div class="uk-section">
-            <h1 class="uk-text-center">Comentarios hechos por <%= usuarioLogueado.nombre %>  </h1>
+            <!-- <section class="info-usuario uk-flex uk-flex-center uk-width-1-1">
 
+                <div class="uk-width-1-2 uk-flex uk-flex-column uk-flex-around ">
+                    <div class="uk-flex uk-flex-middle">
+                        <h3 class="uk-margin-remove"><%= usuarioLogueado.nombre %> </h3>
+                        <a href="" uk-icon="icon:cog; ratio: 1.2" class="uk-margin-left"></a>
+                    </div>
+                    <div class="uk-width-1-1">
+                        <ul class="red-usuario uk-flex uk-flex-between uk-width-1-2">
+                            <li>100 posts</li>
+                            <li>200 seguidores</li>
+                            <li>300 seguidos</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
             
-
- 
+            <hr>
+        -->
+            <h1 class="uk-text-center"><%= title %> </h1>
 
 
             <div class="comentarios uk-flex uk-flex-center uk-margin-large-top">
@@ -19,12 +34,19 @@
                     <% for( let i = 0; i < comentarios.length; i++ ) { %>
                     <li>
                         <div class="uk-card uk-card-default uk-card uk-card uk-padding-small uk-width-large">
-                            <h3 class="uk-card-title"><span class="uk-margin-small-right"
-                                    uk-icon="user"></span>Producto: <a class="uk-text-secondary" href="/productos/detalle/<%= comentarios[i].producto.id %>" > <%= comentarios[i].producto.nombre %></a> </h3>
-                            <p><span class="uk-margin-small-right" uk-icon="star"></span>Puntaje:
-                                <%=comentarios[i].calificacion %> </p>
-                            <p><span class="uk-margin-small-right"
-                                    uk-icon="pencil"></span><%= comentarios[i].texto_comentario %> </p>
+                            <h3 class="uk-card-title">
+                                <span class="uk-margin-small-right" uk-icon="user"></span>
+                                Producto: <a class="uk-text-secondary" href="/productos/detalle/<%= comentarios[i].producto.id %>" > <%= comentarios[i].producto.nombre %></a>
+                             </h3>
+                            <p>
+                                <span class="uk-margin-small-right" uk-icon="star"></span>Puntaje: <%=comentarios[i].calificacion %> 
+                            </p>
+                            <p>
+                                <span class="uk-margin-small-right" uk-icon="pencil"></span><%= comentarios[i].texto_comentario %>
+                            </p>
+                        </div>
+                        <div>
+                            <a href="/usuario/borrarComentario/<%= comentarios[i].id %>"  class="uk-button uk-button-danger uk-width-1-1 uk-margin-small-bottom">Borrar</a>
                         </div>
                     </li>
                     <% } %>

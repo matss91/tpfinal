@@ -37,11 +37,13 @@ app.use(function (req, res, next) {
 
 app.use(function (req, res, next) {
 
-  if (req.cookies.idDelUsuarioLogueado != undefined && req.session.usuarioLogueado == undefined) {
-    db.Usuario.findByPk(req.cookies.idDelUsuarioLogueado)
+  if (req.cookies.idUsuario != undefined && req.session.usuarioLogueado == undefined) {
+    db.Usuario.findByPk(req.cookies.idUsuario)
       .then(function (user) {
         req.session.usuarioLogueado = user;
-        res.redirect(req.originalUrl);
+        res.locals.usuarioLogueado = user
+        // res.redirect(req.originalUrl);
+        return next()
       })
   } else {
     return next();

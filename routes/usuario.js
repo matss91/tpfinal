@@ -13,6 +13,11 @@ router.get('/registro', usuarioController.registro);
 
 router.post('/registroCheck', usuarioController.registroChech);
 
-router.get('/comentarios', usuarioController.comentarios)
+router.get('/comentarios', usuarioController.comentarios);
+
+router.get('/borrarComentario/:id', usuarioController.borrarComentario);
+
+router.post('/borrar/:id', usuarioController.dropComentario);
+
 
 module.exports = router;

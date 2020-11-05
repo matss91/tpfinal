@@ -7,6 +7,10 @@ const bcrypt = require('bcryptjs');const { log } = require('debug');
 
 module.exports = {
     loginForm: function (req,res) {
+        if (req.session.usuarioLogueado != undefined) {
+            res.redirect("/");
+        }
+
         if(req.query.error == 'usuario'){
             res.render('login', { title: 'Login', error: 'usuario' })
 
@@ -19,6 +23,9 @@ module.exports = {
     },
 
     login: function (req,res) {
+        if (req.session.usuarioLogueado != undefined) {
+            res.redirect("/");
+        }
         db.Usuario.findOne({
             where: {
                 [op.or]: [
@@ -37,13 +44,16 @@ module.exports = {
                 if(req.body.recordar != undefined){
                     res.cookie('usuarioLogueadoId', usuario.id, { maxAge: 1000 * 60 * 60 * 24 * 365});
                 }
-
+                
                 res.redirect('/')
             }
         })
     },
 
     registro: function (req,res) {
+        if (req.session.usuarioLogueado != undefined) {
+            res.redirect("/");
+        }
         if(req.query.error){
             res.render('registro', {title: 'Registración', error: true});
         }else{
@@ -52,6 +62,9 @@ module.exports = {
     },
 
     registroChech: function (req,res) {
+        if (req.session.usuarioLogueado != undefined) {
+            res.redirect("/");
+        }
         db.Usuario.findOne({
             where: {
                 [op.or]:[
@@ -80,25 +93,63 @@ module.exports = {
     },
 
     logout: function (req,res) {
+        if (req.session.usuarioLogueado != undefined) {
+            res.redirect("/");
+        }
         req.session.usuarioLogueado = undefined;
-        res.redirect('/');
+        res.clearCookie('idUsuario');
+        return res.redirect('/');
     },
 
     comentarios: function (req, res) {
+        if (req.session.usuarioLogueado == undefined) {
+            res.redirect("/");
+        }
         let usuario_id = req.session.usuarioLogueado.id;
         db.Comentario.findAll({
             where: [
                 {usuario_id: usuario_id}
             ],
-            include: [
-                {association: 'producto'}
+            order:[
+                ['createdAt', 'DESC']
+            ],
+            include: [  
+                {association: 'producto'},
+                {association: 'usuario'}
             ]
         })
         .then(function (comentarios) {
-            // res.send(comentarios)
             res.render('misComentarios', { comentarios: comentarios, title: 'Mis comentarios' })
         })
+    },
+
+    borrarComentario: function (req,res) {
+        if (req.session.usuarioLogueado == undefined) {
+            res.redirect("/");
+        }
+        let id = req.params.id;
+        db.Comentario.findByPk(id)
+        .then(function (comentario) {
+            res.render('borrarComentario', {comentario: comentario, title: 'Borrar comentario'})
+        })
+    },
+
+    dropComentario: function (req,res) {
+        if (req.session.usuarioLogueado == undefined) {
+            res.redirect("/");
+        }
+        let id = req.params.id;
+        db.Comentario.destroy({
+            where: [
+                { id:id }
+            ]
+        })
+        .then(function (result) {
+            console.log(result);
+            res.redirect('/usuario/comentarios');
+        })
     }
+
 }
 
 

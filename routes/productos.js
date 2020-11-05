@@ -11,4 +11,18 @@ router.get('/buscar', productosController.buscar);
 
 router.post('/agregarComentario/:id', productosController.agregarComentario);
 
+router.get('/agregarProducto', productosController.agregarProducto);
+
+router.post('/agregarProducto', productosController.productoSubmit);
+
+router.get('/misProductos', productosController.misProductos);
+
+router.get('/editar/:id', productosController.editarProducto);
+
+router.post('/editar/:id', productosController.editarConfirm);
+
+router.get('/borrar/:id', productosController.borrarProducto);
+
+router.post('/borrar/:id', productosController.borrarConfirm);
+
 module.exports = router;
