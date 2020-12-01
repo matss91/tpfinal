@@ -10,7 +10,6 @@ module.exports = {
            include: [{all: true, nested: true}]
         })
         .then(function (unProducto) {
-            // res.send(unProducto);
             res.render('detalle',{ unProducto: unProducto, title: unProducto.nombre })
         })
     },
@@ -63,6 +62,7 @@ module.exports = {
         }
         let idProducto = req.params.id;
         let idUsuario = req.session.usuarioLogueado.id;
+
         db.Comentario.create({
             texto_comentario: req.body.texto_comentario,
             calificacion: req.body.calificacion,
