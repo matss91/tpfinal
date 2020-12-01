@@ -42,7 +42,6 @@ app.use(function (req, res, next) {
       .then(function (user) {
         req.session.usuarioLogueado = user;
         res.locals.usuarioLogueado = user
-        // res.redirect(req.originalUrl);
         return next()
       })
   } else {
