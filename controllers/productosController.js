@@ -89,7 +89,7 @@ module.exports = {
         })
             .then(() => {
                 //  res.send()
-                res.redirect('/productos/agregarProducto')
+                res.redirect('/')
             })
             .catch(error => res.send(error))
 
