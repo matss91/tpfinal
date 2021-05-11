@@ -1,7 +1,7 @@
 const db = require('../database/models');
 const Sequelize = require('sequelize');
 const { log } = require('debug');
-const op = db.Sequelize.Op;
+const Op = db.Sequelize.Op;
 
 module.exports = {
     detalle: function (req,res) {
