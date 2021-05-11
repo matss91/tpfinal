@@ -30,30 +30,21 @@ module.exports = {
     },
 
     buscar: function (req,res) {
-        let busqueda = req.query.busqueda;
         db.Producto.findAll({
-            where:
-                {
-                    [op.or]: [
-                            {
-                                nombre: {
-                                    [op.like]: `%${busqueda}%`
-                                }
-                            },
-                            {
-                                marca: {
-                                [op.like]: `%${busqueda}%`
-
-                                }
-                            }
-                   ]
-
-                }
-            
+            where : {
+               nombre : {
+                    [Op.like] : `%${req.query.busqueda}%`
+                } 
+            }
         })
-        .then(function (resultados) {
-            res.render('resultadoBusqueda', { title: busqueda , resultados: resultados});
+        .then(resultados => {
+            return res.render('resultadoBusqueda',{
+               resultados
+            })
         })
+        .catch(error => res.send(error))
+     
+      
     },
 
     agregarComentario: function (req,res) {
@@ -85,16 +76,22 @@ module.exports = {
         if (req.session.usuarioLogueado == undefined) {
             res.redirect("/");
         }
+       const {nombre, marca, imagen,precio } = req.body;
+
         db.Producto.create({
-            nombre: req.body.nombre,
-            marca: req.body.marca,
-            precio: req.body.precio,
-            categoria_id: req.body.categoria,
-            img_url: req.body.imagen
+            nombre,
+            marca,
+           precio,
+           img_url:imagen,
+           categoria_id:1,
+           usuario_id:req.session.usuarioLogueado.id,
+
         })
-        .then(function (resultado) {
-            res.redirect('/productos/detalle/'+ resultado.id)
-        })
+            .then(() => {
+                //  res.send()
+                res.redirect('/productos/agregarProducto')
+            })
+            .catch(error => res.send(error))
 
     },
 

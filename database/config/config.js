@@ -1,12 +1,12 @@
 module.exports= {
   "development": {
     "username": "root",
-    "password": "",
-    "database": "e-commerce-prog2",
-    "host": "127.0.0.1",
+    "password": "root",
+    "database": "tpfinal",
+  
     "dialect": "mysql",
-    "operatorsAliases": false,
-    "port" : 3306
+    
+    "port" :"3307"
   },
   "test": {
     "username": "root",
