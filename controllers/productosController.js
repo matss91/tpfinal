@@ -76,14 +76,14 @@ module.exports = {
         if (req.session.usuarioLogueado == undefined) {
             res.redirect("/");
         }
-       const {nombre, marca, imagen,precio } = req.body;
+       const {nombre, marca, imagen,precio,categoria } = req.body;
 
         db.Producto.create({
             nombre,
             marca,
            precio,
            img_url:imagen,
-           categoria_id:1,
+           categoria_id:Number(categoria),
            usuario_id:req.session.usuarioLogueado.id,
 
         })
